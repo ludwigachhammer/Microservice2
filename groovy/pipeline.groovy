@@ -61,7 +61,7 @@ node {
 
     dir("") {
         stage("Build"){
-            sh "mvn clean package"
+            sh "gradle build"
         }
         
         stage("Validating Config"){
