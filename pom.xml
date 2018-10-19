@@ -31,6 +31,22 @@
             <scope>test</scope>
         </dependency>
         <!-- end::tests[] -->
+        <!-- Prometheus Endpoint /prometheus -->
+        <dependency>
+		    <groupId>io.prometheus</groupId>
+		    <artifactId>simpleclient_spring_boot</artifactId>
+		    <version>0.0.26</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.prometheus</groupId>
+		    <artifactId>simpleclient_hotspot</artifactId>
+		    <version>0.0.26</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.prometheus</groupId>
+		    <artifactId>simpleclient_servlet</artifactId>
+		    <version>0.0.26</version>
+		</dependency>
     </dependencies>
 
     <properties>
