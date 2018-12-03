@@ -18,7 +18,7 @@ def callPost(String urlString, String queryString) {
 def callGetJira(String urlString) {
     withCredentials([[
                              $class          : 'UsernamePasswordMultiBinding',
-                             credentialsId   : '65220318-765b-4be8-8244-e7ed8f84ecd7',
+                             credentialsId   : '3d6714bc-18de-4603-bd94-d45a159541b5',
                              usernameVariable: 'JIRA_USERNAME',
                              passwordVariable: 'JIRA_PASSWORD'
                      ]]) {
@@ -53,7 +53,7 @@ node {
                 branches         : [[name: "refs/heads/master"]],
                 extensions       : [[$class: 'CleanBeforeCheckout', localBranch: "master"]],
                 userRemoteConfigs: [[
-                                            credentialsId: 'cbf178fa-56ee-4394-b782-36eb8932ac64',
+                                            credentialsId: '3e479734-15f2-4816-ba21-d3926da4e288',
                                             url          : "https://github.com/Nicocovi/Microservice2"
                                     ]]
                 ])
@@ -61,7 +61,7 @@ node {
 
     dir("") {
         stage("Build"){
-            sh "gradle build"
+            sh "sudo gradle build"
         }
         
         stage("Validating Config"){
@@ -79,11 +79,14 @@ node {
                     break;
                 }
             }
+            
             JIRALINK = trimmedText[index]
+            echo "JIRALINK: ${JIRALINK}"
             String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]" //website regex
             //TODO 
             //JIRALINK matches regex
-            for (i = 1; i <trimmedText.size(); i = i+2) {
+            for (i = 0; i <trimmedText.size()-1; i = i+2) {
+                echo "${trimmedText[i]} : ${trimmedText[i+1]}"
                 LINKS = LINKS+"\""+trimmedText[i]+"\":"+"\""+trimmedText[i+1]+"\","
             }
             LINKS = LINKS.substring(0, (LINKS.length())-1)//remove last coma
@@ -91,8 +94,8 @@ node {
         }
         
         stage("Get Basic Jira Information"){
-            //GET http://localhost:8099/rest/api/2/project/{projectIdOrKey}
-            def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MIC")
+            //GET http://jira-url:port/rest/api/2/project/{projectIdOrKey}
+            def jiraProject = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/project/ED")
             BASIC_INFO = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
             echo "BASIC INFO: ${BASIC_INFO}"
         }
@@ -100,15 +103,16 @@ node {
             // customfield_10007: Domain
             // customfield_10008: Subdomain
             // customfield_10009: Product
-            def response = callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MIC")
+            // changed due to Jira structure: Components
+            def response = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/search?jql=project=ED")
             //echo "ISSUES: ${response}"
             List<String> domains = new ArrayList<String>()
             List<String> subdomains = new ArrayList<String>()
             List<String> products = new ArrayList<String>()
             for (i = 0; i <response.issues.size(); i++) {
-                domain_tmp = response.issues[i].fields.customfield_10007.value
-                subdomain_tmp = response.issues[i].fields.customfield_10008.value
-                product_tmp = response.issues[i].fields.customfield_10009
+                domain_tmp = 'IT'//response.issues[i].fields.customfield_10007.value
+                subdomain_tmp = 'IT-2'//response.issues[i].fields.customfield_10008.value
+                product_tmp = 'EA Documentation' //response.issues[i].fields.customfield_10009
                 if(!domains.contains(domain_tmp)){
                     domains.add(domain_tmp)
                 }
@@ -135,20 +139,20 @@ node {
                }
                withCredentials([[
                                      $class          : 'UsernamePasswordMultiBinding',
-                                     credentialsId   : '98c5d653-dbdc-4b52-81ba-50c2ac04e4f1',
+                                     credentialsId   : '3e479734-15f2-4816-ba21-d3926da4e288',
                                      usernameVariable: 'CF_USERNAME',
                                      passwordVariable: 'CF_PASSWORD'
                              ]]) {
-                sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
-                sh 'cf target -o ncorpan-org -s development'
-                sh 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
+                sh 'sudo cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
+                sh 'sudo cf target -o ncorpan-org -s development'
+                sh 'sudo cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
             }
         }
         
         
         stage("Get Runtime Information"){
             APP_STATUS = sh (
-                script: 'cf app '+NAME,
+                script: 'sudo cf app '+NAME,
                 returnStdout: true
             )
             LENGTH = APP_STATUS.length()
@@ -176,7 +180,7 @@ node {
             echo "buildpackstring: ${BUILDPACKSTRING}"
             //TODO network policies
             CF_NETWORK_POLICIES_SOURCE = sh (
-                script: 'cf network-policies --source '+NAME,
+                script: 'sudo cf network-policies --source '+NAME,
                 returnStdout: true
             )
             CF_NETWORK_POLICIES = CF_NETWORK_POLICIES_SOURCE.substring((CF_NETWORK_POLICIES_SOURCE.indexOf("ports", 0)+5), (CF_NETWORK_POLICIES_SOURCE.length())-1)
@@ -197,7 +201,7 @@ node {
             def jsonstring = "{"+BASIC_INFO+BUSINESS_INFO+","+runtime+","+LINKS+","+APP_SERVICES+"}"
             echo "JSONSTRING: ${jsonstring}"
             try {
-                    callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
+                    callPost("http://131.159.30.173:9123/document", jsonstring) //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
