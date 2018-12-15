@@ -60,17 +60,13 @@ node {
     }
 
     dir("") {
-        stage("Build"){
-            sh "sudo gradle build"
-        }
-        
         stage("Validating Config"){
             //TODO
             //Validate jira link in links.config
             def currentDir = new File(".").absolutePath
             env.WORKSPACE = pwd() // present working directory.
             def file = readFile "${env.WORKSPACE}/links.config"
-            def trimmedText = file.trim().replaceAll('\t',' ').replaceAll('\r\n',' ').replaceAll(" +",";").split(";")
+            def trimmedText = file.trim().replaceAll('\n','  ').replaceAll('\t','  ').replaceAll(" +",";").split(";")
             echo "trimmedText: ${trimmedText}"
             int index = -1;
             for (int i=0;i<trimmedText.length;i++) {
@@ -92,7 +88,9 @@ node {
             LINKS = LINKS.substring(0, (LINKS.length())-1)//remove last coma
             echo LINKS
         }
-        
+        stage("Build"){
+            sh "sudo gradle build"
+        }
         stage("Get Basic Jira Information"){
             //GET http://jira-url:port/rest/api/2/project/{projectIdOrKey}
             def jiraProject = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/project/ED")
