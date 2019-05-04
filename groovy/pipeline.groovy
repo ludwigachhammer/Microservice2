@@ -63,6 +63,7 @@ node {
             //TODO
             //Validate jira link in links.config
             def currentDir = new File(".").absolutePath
+            echo "Debugg: ${currentDir}"
             env.WORKSPACE = pwd() // present working directory.
             def file = readFile "${env.WORKSPACE}/links.config"
             def trimmedText = file.trim().replaceAll('\n','  ').replaceAll('\t','  ').replaceAll(" +",";").split(";")
