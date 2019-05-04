@@ -53,8 +53,7 @@ node {
                 branches         : [[name: "refs/heads/master"]],
                 extensions       : [[$class: 'CleanBeforeCheckout', localBranch: "master"]],
                 userRemoteConfigs: [[
-                                            credentialsId: '3e479734-15f2-4816-ba21-d3926da4e288',
-                                            url          : "https://github.com/Nicocovi/Microservice2"
+                                            url          : "https://github.com/ludwigachhammer/Microservice2"
                                     ]]
                 ])
     }
@@ -142,7 +141,7 @@ node {
                                      passwordVariable: 'CF_PASSWORD'
                              ]]) {
                 sh 'sudo cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
-                sh 'sudo cf target -o ncorpan-org -s development'
+                sh 'sudo cf target -o ead-tool -s development'
                 sh 'sudo cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
             }
         }
