@@ -141,15 +141,15 @@ node {
                                      usernameVariable: 'CF_USERNAME',
                                      passwordVariable: 'CF_PASSWORD'
                              ]]) {
-                sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
-                sh 'cf target -o ead-tool -s development'
-                sh 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
+                bat 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
+                bat 'cf target -o ead-tool -s development'
+                bat 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
             }
         }
         
         
         stage("Get Runtime Information"){
-            APP_STATUS = sh (
+            APP_STATUS = bat (
                 script: 'cf app '+NAME,
                 returnStdout: true
             )
@@ -177,7 +177,7 @@ node {
             BUILDPACKSTRING = buildpacks+"]"
             echo "buildpackstring: ${BUILDPACKSTRING}"
             //TODO network policies
-            CF_NETWORK_POLICIES_SOURCE = sh (
+            CF_NETWORK_POLICIES_SOURCE = bat (
                 script: 'cf network-policies --source '+NAME,
                 returnStdout: true
             )
