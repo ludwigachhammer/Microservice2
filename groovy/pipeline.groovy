@@ -89,6 +89,7 @@ node {
             echo LINKS
         }
         stage("Build"){
+            sh "ls"
             sh "gradlew build"
         }
         stage("Get Basic Jira Information"){
