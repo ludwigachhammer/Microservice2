@@ -89,8 +89,7 @@ node {
             echo LINKS
         }
         stage("Build"){
-            sh "ls"
-            sh "gradlew build"
+            bat "gradlew build"
         }
         stage("Get Basic Jira Information"){
             //GET http://jira-url:port/rest/api/2/project/{projectIdOrKey}
