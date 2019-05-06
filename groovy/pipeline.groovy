@@ -38,7 +38,7 @@ def callGetJira(String urlString) {
 node {
     
     // GLOBAL VARIABLES
-    def NAME = "Masterarbeitssoftware-frontend"
+    def NAME = "mock-microservice2"
     def BASIC_INFO = ""
     def BUILDPACKSTRING = ""
     def LINKS = ""
