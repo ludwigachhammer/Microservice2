@@ -131,6 +131,7 @@ node {
             def branch = ['master']
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
             def manifest = "manifest.yml"
+            echo '\'test\''
             
                if (manifest == null) {
                 throw new RuntimeException('Could not map branch ' + master + ' to a manifest file')
