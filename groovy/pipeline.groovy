@@ -91,7 +91,7 @@ node {
         stage("Build"){
             bat "gradlew build"
         }
-        stage("Get Basic Jira Information"){
+        /*stage("Get Basic Jira Information"){
             //GET http://jira-url:port/rest/api/2/project/{projectIdOrKey}
             def jiraProject = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/project/ED")
             BASIC_INFO = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
@@ -126,7 +126,7 @@ node {
             echo "DOMAIN: ${products}"
             BUSINESS_INFO = " \"domain\": \"${domains[0]}\", \"subdomain\": \"${subdomains[0]}\", \"product\": \"${products[0]}\" "       
         }
-        
+        */
         stage('Deploy') {
             def branch = ['master']
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
