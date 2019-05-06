@@ -142,7 +142,10 @@ node {
                                      usernameVariable: 'CF_USERNAME',
                                      passwordVariable: 'CF_PASSWORD'
                              ]]) {
-                bat 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
+                //bat 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
+                bat 'cf login -a https://api.run.pivotal.io'
+                bat '$CF_USERNAME'
+                bat '$CF_PASSWORD'
                 bat 'cf target -o ead-tool -s development'
                 bat 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
             }
