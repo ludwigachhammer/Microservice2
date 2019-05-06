@@ -131,7 +131,7 @@ node {
             def branch = ['master']
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
             def manifest = "manifest.yml"
-            echo '\"test\"'
+            echo '\"'+'$CF_PASSWORD'+'\"'
             
                if (manifest == null) {
                 throw new RuntimeException('Could not map branch ' + master + ' to a manifest file')
@@ -142,7 +142,7 @@ node {
                                      usernameVariable: 'CF_USERNAME',
                                      passwordVariable: 'CF_PASSWORD'
                              ]]) {
-                   bat 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p \"$CF_PASSWORD\" --skip-ssl-validation'
+                bat 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p \"'+'$CF_PASSWORD'+'\" --skip-ssl-validation'
                 bat 'cf target -o ead-tool -s development'
                 bat 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
             }
