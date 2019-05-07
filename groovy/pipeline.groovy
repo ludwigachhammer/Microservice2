@@ -130,7 +130,7 @@ node {
             //BUSINESS_INFO = " \"domain\": \"${domains[0]}\", \"subdomain\": \"${subdomains[0]}\", \"product\": \"${products[0]}\" " 
             BUSINESS_INFO = " \"domain\": \"drumset\", \"subdomain\": \"cymbals\", \"product\": \"crashride\" " 
         }
-        */
+        
         stage('Deploy') {
             def branch = ['master']
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
