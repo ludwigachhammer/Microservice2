@@ -96,7 +96,7 @@ node {
             //GET http://jira-url:port/rest/api/2/project/{projectIdOrKey}
             //def jiraProject = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/project/ED")
             //BASIC_INFO = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
-            BASIC_INFO = "\"id\": \""+"1234"+"\", \"key\":\""+"a1b2"+"\", \"name\": \""+"mockproject"+"\", \"owner\": \""+"leader"+"\", \"description\": \""+"testdescription"+"\", \"short_name\": \""+"abc"+"\", \"type\": \""+"microservice"+"\","
+            BASIC_INFO = "\"id\": \""+"1234"+"\", \"key\":\""+"a1b2"+"\", \"name\": \""+"mockmicroservice2"+"\", \"owner\": \""+"leader"+"\", \"description\": \""+"testdescription"+"\", \"short_name\": \""+"abc"+"\", \"type\": \""+"microservice"+"\","
             echo "BASIC INFO: ${BASIC_INFO}"
         }
         stage("Get Business Jira Information"){
