@@ -200,7 +200,7 @@ node {
             def jsonstring = "{"+BASIC_INFO+BUSINESS_INFO+","+runtime+","+LINKS+","+APP_SERVICES+"}"
             echo "JSONSTRING: ${jsonstring}"
             try {
-                    callPost("http://http://131.159.30.173:9123/document", jsonstring) //Include protocol
+                    callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
