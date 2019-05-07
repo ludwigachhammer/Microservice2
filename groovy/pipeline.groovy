@@ -91,10 +91,12 @@ node {
         stage("Build"){
             bat "gradlew build"
         }
-        /*stage("Get Basic Jira Information"){
+        
+        stage("Get Basic Jira Information"){
             //GET http://jira-url:port/rest/api/2/project/{projectIdOrKey}
-            def jiraProject = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/project/ED")
-            BASIC_INFO = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
+            //def jiraProject = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/project/ED")
+            //BASIC_INFO = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
+            BASIC_INFO = "\"id\": \""+"1234"+"\", \"key\":\""+"a1b2"+"\", \"name\": \""+"mockproject"+"\", \"owner\": \""+"leader"+"\", \"description\": \""+"testdescription"+"\", \"short_name\": \""+"abc"+"\", \"type\": \""+"microservice"+"\","
             echo "BASIC INFO: ${BASIC_INFO}"
         }
         stage("Get Business Jira Information"){
@@ -102,12 +104,12 @@ node {
             // customfield_10008: Subdomain
             // customfield_10009: Product
             // changed due to Jira structure: Components
-            def response = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/search?jql=project=ED")
+            //def response = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/search?jql=project=ED")
             //echo "ISSUES: ${response}"
-            List<String> domains = new ArrayList<String>()
-            List<String> subdomains = new ArrayList<String>()
-            List<String> products = new ArrayList<String>()
-            for (i = 0; i <response.issues.size(); i++) {
+            //List<String> domains = new ArrayList<String>()
+            //List<String> subdomains = new ArrayList<String>()
+            //List<String> products = new ArrayList<String>()
+            /*for (i = 0; i <response.issues.size(); i++) {
                 domain_tmp = 'IT'//response.issues[i].fields.customfield_10007.value
                 subdomain_tmp = 'IT-2'//response.issues[i].fields.customfield_10008.value
                 product_tmp = 'EA Documentation' //response.issues[i].fields.customfield_10009
@@ -124,7 +126,9 @@ node {
             echo "DOMAIN: ${domains}"
             echo "DOMAIN: ${subdomains}"
             echo "DOMAIN: ${products}"
-            BUSINESS_INFO = " \"domain\": \"${domains[0]}\", \"subdomain\": \"${subdomains[0]}\", \"product\": \"${products[0]}\" "       
+            */
+            //BUSINESS_INFO = " \"domain\": \"${domains[0]}\", \"subdomain\": \"${subdomains[0]}\", \"product\": \"${products[0]}\" " 
+            BUSINESS_INFO = " \"domain\": \"drumset\", \"subdomain\": \"cymbals\", \"product\": \"crashride\" " 
         }
         */
         stage('Deploy') {
