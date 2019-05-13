@@ -205,7 +205,7 @@ node {
             echo "JSONSTRING: ${jsonstring}"
             try {
                     //callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
-                    callPost("http://localhost:8080/document", jsonstring) //Include protocol
+                    callPost("http://localhost:8080/document/", jsonstring) //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
