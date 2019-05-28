@@ -221,14 +221,14 @@ node {
 		echo "ORG_MANAGER: ${ORG_MANAGER}"
 		echo "CF_CONTACT: ${CF_CONTACT}"
 						   
-		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING MANAGER", 0)+16), (CF_CONTACT.indexOf("ORG AUDITOR", 0)))
+		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING MANAGER", 0)+18), (CF_CONTACT.indexOf("ORG AUDITOR", 0)))
 		echo "BILLING_MANAGER: ${BILLING_MANAGER}"
 						   
-		ORG_AUDITOR = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG AUDITOR", 0)+12), (CF_CONTACT.length()))
-		echo "AUDIT_MANAGER: ${AUDIT_MANAGER}"
+		ORG_AUDITOR = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG AUDITOR", 0)+14), (CF_CONTACT.length()))
+		echo "ORG_AUDITOR: ${ORG_AUDITOR}"
 		
-		CONTACT = ", ${ORG_MANAGER}, ${BILLING_MANAGER}, ${AUDIT_MANAGER}"
-		echo "CONTACT: ${CONTACT}"
+		ALLCONTACTS = ", ${ORG_MANAGER}, ${BILLING_MANAGER}, ${ORG_AUDITOR}"
+		echo "CONTACT: ${ALLCONTACTS}"
 		}
         
         stage("Push Documentation"){
