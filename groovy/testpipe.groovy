@@ -39,6 +39,7 @@ node {
     
     // GLOBAL VARIABLES
     def NAME = "mock-microservice2"
+    def ORG_NAME = "ead-tool"
     def BASIC_INFO = ""
     def BUILDPACKSTRING = ""
     def LINKS = ""
@@ -197,6 +198,15 @@ node {
             APP_SERVICES = BUILDPACKSTRING + APP_SERVICES + "]}"
             echo "APP_SERVICES: ${APP_SERVICES}"            
         }//stage
+        
+        stage("Get CF-Contact information") {
+			APP_CONTACT = bat (
+				script: 'cf org-users'+ORG_NAME,
+				returnStdout: true
+			)
+			echo "APP_CONTACT: ${APP_CONTACT}"
+			
+		}
         
         stage("Push Documentation"){
             def runtime = " \"status\":\"${APP_SHORTSTATUS[1]}\", \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
