@@ -234,7 +234,7 @@ node {
         stage("Push Documentation"){
             def runtime = " \"status\":\"${APP_SHORTSTATUS[1]}\", \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
             echo "LINKS: ${LINKS}"
-            def jsonstring = "{"+BASIC_INFO+BUSINESS_INFO+","+runtime+","+LINKS+","+APP_SERVICES+","+ALLCONTACTS}"
+            def jsonstring = "{"+BASIC_INFO+BUSINESS_INFO+","+runtime+","+LINKS+","+APP_SERVICES+","+ALLCONTACTS+"}"
             echo "JSONSTRING: ${jsonstring}"
             try {
                     //callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
