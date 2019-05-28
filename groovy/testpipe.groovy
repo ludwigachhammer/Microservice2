@@ -222,7 +222,7 @@ node {
 		echo "Index: ${CF_CONTACT.indexOf("ORG MANAGER", 0)+11}"
 		echo "Index: ${CF_CONTACT.indexOf("ORG MANAGER", 0)+12}"
 		echo "Index: ${CF_CONTACT.indexOf("ORG MANAGER", 0)+13}"
-		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG MANAGER", 0)+1), (CF_CONTACT.indexOf("BILLING MANAGER", 0)))
+		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG MANAGER", 0)+12), (CF_CONTACT.indexOf("BILLING MANAGER", 0)))
 		echo "ORG_MANAGER: ${ORG_MANAGER}"
 						   
 		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING MANAGER", 0)+1), (CF_CONTACT.indexOf("AUDIT MANAGER", 0)))
@@ -230,7 +230,9 @@ node {
 						   
 		AUDIT_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("AUDIT MANAGER", 0)+1), (CF_CONTACT.length()))
 		echo "AUDIT_MANAGER: ${AUDIT_MANAGER}"
-			
+		
+		CONTACT = ", ${ORG_MANAGER}, ${BILLING_MANAGER}, ${AUDIT_MANAGER}"
+		echo "CONTACT: ${CONTACT}"
 		}
         
         stage("Push Documentation"){
