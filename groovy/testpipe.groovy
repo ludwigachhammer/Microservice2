@@ -80,7 +80,7 @@ node {
             echo "Debugg: ${currentDir}"
             env.WORKSPACE = pwd() // present working directory.
             def file = readFile "${env.WORKSPACE}/links.config"
-            def trimmedText = file.trim().replaceAll("\\r\\n|\\r|\\n", " ").replaceAll(" +",";").split(";")
+            def trimmedText = file.trim().replaceAll("\\r\\n|\\r|\\n", " ").replaceAll(" +",";").replaceAll(":", "\"\"").split(";")
             echo "trimmedText: ${trimmedText}"
             int index = -1;
             for (int i=0;i<trimmedText.length;i++) {
