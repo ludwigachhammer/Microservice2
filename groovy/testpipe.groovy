@@ -35,16 +35,23 @@ def callGetJira(String urlString) {
     }
 }
 
+def jsonBuilder(JSON_parts) {
+	return echo "################################### test #####################################"
+}
+
 node {
     
     // GLOBAL VARIABLES
     def NAME = "mock-microservice2"
-    def ORG_NAME = "ead-tool"
     def BASIC_INFO = ""
     def BUILDPACKSTRING = ""
     def LINKS = ""
     def JIRALINK = ""
     def BUSINESS_INFO = ""
+	
+	//newly added
+	def ORG_NAME = "ead-tool"
+	def JSON_parts = new String[7]
     
     deleteDir()
 
@@ -205,14 +212,14 @@ node {
 			returnStdout: true
 		)
 		echo "CF_CONTACT: ${CF_CONTACT}"
-
-		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG MANAGER", 0)+11), (CF_CONTACT.indexOf("BILLING MANAGER", 0)-1))
+		echo "Index: ${CF_CONTACT.indexOf("ORG", 0)+11)}"
+		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG", 0)+11), (CF_CONTACT.indexOf("BILLING MANAGER", 0)-1))
 		echo "ORG_MANAGER: ${ORG_MANAGER}"
 						   
-		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING MANAGER", 0)+15), (CF_CONTACT.indexOf("AUDIT MANAGER", 0)-1))
+		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING", 0)+15), (CF_CONTACT.indexOf("AUDIT MANAGER", 0)-1))
 		echo "BILLING_MANAGER: ${BILLING_MANAGER}"
 						   
-		AUDIT_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("AUDIT MANAGER", 0)+13), (CF_CONTACT.length()))
+		AUDIT_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("AUDIT", 0)+13), (CF_CONTACT.length()))
 		echo "AUDIT_MANAGER: ${AUDIT_MANAGER}"
 			
 		}
