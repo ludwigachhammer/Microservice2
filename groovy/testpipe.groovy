@@ -217,19 +217,14 @@ node {
 			script: 'cf org-users '+ORG_NAME,
 			returnStdout: true
 		)
-		echo "CF_CONTACT: ${CF_CONTACT}"
-		echo "Index: ${CF_CONTACT.indexOf("ORG MANAGER", 0)+1}"
-		echo "Index: ${CF_CONTACT.indexOf("ORG MANAGER", 0)+11}"
-		echo "Index: ${CF_CONTACT.indexOf("ORG MANAGER", 0)+12}"
-		echo "Index: ${CF_CONTACT.indexOf("ORG MANAGER", 0)+13}"
-		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG MANAGER", 0)+15), (CF_CONTACT.indexOf("BILLING MANAGER", 0)))
+		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG MANAGER", 0)+14), (CF_CONTACT.indexOf("BILLING MANAGER", 0)))
 		echo "ORG_MANAGER: ${ORG_MANAGER}"
 		echo "CF_CONTACT: ${CF_CONTACT}"
 						   
-		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING MANAGER", 0)+1), (CF_CONTACT.indexOf("AUDIT MANAGER", 0)))
+		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING MANAGER", 0)+16), (CF_CONTACT.indexOf("ORG AUDITOR", 0)))
 		echo "BILLING_MANAGER: ${BILLING_MANAGER}"
 						   
-		AUDIT_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("AUDIT MANAGER", 0)+1), (CF_CONTACT.length()))
+		ORG_AUDITOR = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG AUDITOR", 0)+12), (CF_CONTACT.length()))
 		echo "AUDIT_MANAGER: ${AUDIT_MANAGER}"
 		
 		CONTACT = ", ${ORG_MANAGER}, ${BILLING_MANAGER}, ${AUDIT_MANAGER}"
