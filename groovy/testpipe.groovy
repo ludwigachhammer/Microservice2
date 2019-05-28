@@ -200,7 +200,7 @@ node {
         }//stage
         
         stage("Get CF-Contact information") {
-		APP_CONTACT = bat (
+		CF_CONTACT = bat (
 			script: 'cf org-users '+ORG_NAME,
 			returnStdout: true
 		)
