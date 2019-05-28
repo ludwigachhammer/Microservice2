@@ -221,20 +221,20 @@ node {
 		echo "ORG_MANAGER: ${ORG_MANAGER}"
 		echo "CF_CONTACT: ${CF_CONTACT}"
 						   
-		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING MANAGER", 0)+18), (CF_CONTACT.indexOf(" ", 0)))
+		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING MANAGER", 0)+18), (CF_CONTACT.indexOf("ORG AUDITOR", -1)))
 		echo "BILLING_MANAGER: ${BILLING_MANAGER}"
 						   
 		ORG_AUDITOR = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG AUDITOR", 0)+14), (CF_CONTACT.length()))
 		echo "ORG_AUDITOR: ${ORG_AUDITOR}"
 		
-		ALLCONTACTS = ", ${ORG_MANAGER}, ${BILLING_MANAGER}, ${ORG_AUDITOR}"
+		ALLCONTACTS = "ALLCONTACTS: ${ORG_MANAGER}, ${BILLING_MANAGER}, ${ORG_AUDITOR}"
 		echo "CONTACT: ${ALLCONTACTS}"
 		}
         
         stage("Push Documentation"){
             def runtime = " \"status\":\"${APP_SHORTSTATUS[1]}\", \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
             echo "LINKS: ${LINKS}"
-            def jsonstring = "{"+BASIC_INFO+BUSINESS_INFO+","+runtime+","+LINKS+","+APP_SERVICES+"}"
+            def jsonstring = "{"+BASIC_INFO+BUSINESS_INFO+","+runtime+","+LINKS+","+APP_SERVICES+","+ALLCONTACTS"}"
             echo "JSONSTRING: ${jsonstring}"
             try {
                     //callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
