@@ -204,7 +204,7 @@ node {
 			script: 'cf org-users '+ORG_NAME,
 			returnStdout: true
 		)
-		echo "APP_CONTACT: ${APP_CONTACT}"
+		echo "CF_CONTACT: ${CF_CONTACT}"
 
 		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG MANAGER", 0)+11), (CF_CONTACT.indexOf("BILLING MANAGER", 0)-1))
 		echo "ORG_MANAGER: ${ORG_MANAGER}"
