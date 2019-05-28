@@ -35,9 +35,11 @@ def callGetJira(String urlString) {
     }
 }
 
+/*
 def jsonBuilder(JSON_parts) {
 	return echo "################################### test #####################################"
 }
+*/
 
 node {
     
