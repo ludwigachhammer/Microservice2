@@ -214,7 +214,7 @@ node {
 			returnStdout: true
 		)
 		echo "CF_CONTACT: ${CF_CONTACT}"
-		echo "Index: ${CF_CONTACT.indexOf("ORG", 0)+11)}"
+		echo "Index: ${CF_CONTACT.indexOf("ORG", 0)+11}"
 		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG", 0)+11), (CF_CONTACT.indexOf("BILLING MANAGER", 0)-1))
 		echo "ORG_MANAGER: ${ORG_MANAGER}"
 						   
