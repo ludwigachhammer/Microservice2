@@ -215,10 +215,10 @@ node {
 		)
 		echo "CF_CONTACT: ${CF_CONTACT}"
 		echo "Index: ${CF_CONTACT.indexOf("ORG", 0)+11}"
-		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG", 0)+11), (CF_CONTACT.indexOf("BILLING MANAGER", 0)-1))
+		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG", 0)+11), (CF_CONTACT.indexOf("BILLING MANAGER", 0)))
 		echo "ORG_MANAGER: ${ORG_MANAGER}"
 						   
-		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING", 0)+15), (CF_CONTACT.indexOf("AUDIT MANAGER", 0)-1))
+		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING", 0)+15), (CF_CONTACT.indexOf("AUDIT MANAGER", 0)))
 		echo "BILLING_MANAGER: ${BILLING_MANAGER}"
 						   
 		AUDIT_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("AUDIT", 0)+13), (CF_CONTACT.length()))
