@@ -37,7 +37,11 @@ def callGetJira(String urlString) {
 
 /*
 def jsonBuilder(JSON_parts) {
-	return echo "################################### test #####################################"
+	def string = "################################### test #####################################"
+	def JSON_full = ""
+	echo "JSON_parts: ${JSON_parts}"
+	echo "JSON_full: ${JSON_full}"
+	echo "Return: ${string}"
 }
 */
 
@@ -215,6 +219,9 @@ node {
 		)
 		echo "CF_CONTACT: ${CF_CONTACT}"
 		echo "Index: ${CF_CONTACT.indexOf("ORG MANAGER", 0)+1}"
+		echo "Index: ${CF_CONTACT.indexOf("ORG MANAGER", 0)+11}"
+		echo "Index: ${CF_CONTACT.indexOf("ORG MANAGER", 0)+12}"
+		echo "Index: ${CF_CONTACT.indexOf("ORG MANAGER", 0)+13}"
 		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG MANAGER", 0)+1), (CF_CONTACT.indexOf("BILLING MANAGER", 0)))
 		echo "ORG_MANAGER: ${ORG_MANAGER}"
 						   
