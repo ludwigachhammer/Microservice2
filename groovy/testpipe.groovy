@@ -200,11 +200,20 @@ node {
         }//stage
         
         stage("Get CF-Contact information") {
-			APP_CONTACT = bat (
-				script: 'cf org-users '+ORG_NAME,
-				returnStdout: true
-			)
-			echo "APP_CONTACT: ${APP_CONTACT}"
+		APP_CONTACT = bat (
+			script: 'cf org-users '+ORG_NAME,
+			returnStdout: true
+		)
+		echo "APP_CONTACT: ${APP_CONTACT}"
+
+		ORG_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG MANAGER", 0)+11), (CF_CONTACT.indexOf("BILLING MANAGER", 0)-1)
+		echo "ORG_MANAGER: ${APP_CONTACT}"
+						   
+		BILLING_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("BILLING MANAGER", 0)+15), (CF_CONTACT.indexOf("AUDIT MANAGER", 0)-1)
+		echo "BILLING_MANAGER: ${APP_CONTACT}"
+						   
+		AUDIT_MANAGER = CF_CONTACT.substring((CF_CONTACT.indexOf("AUDIT MANAGER", 0)+13), (CF_CONTACT.length())
+		echo "AUDIT_MANAGER: ${APP_CONTACT}"
 			
 		}
         
