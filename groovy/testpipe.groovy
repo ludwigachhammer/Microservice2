@@ -227,7 +227,7 @@ node {
 		ORG_AUDITOR = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG AUDITOR", 0)+14), (CF_CONTACT.length())).trim()
 		echo "ORG_AUDITOR: ${ORG_AUDITOR}"
 		
-		ALLCONTACTS = "\"orgmanager\":${ORG_MANAGER},\"billingmanager\":${BILLING_MANAGER},\"auditmanager\":${ORG_AUDITOR}"
+		ALLCONTACTS = "\"orgmanager\":\"${ORG_MANAGER}\",\"billingmanager\":\"${BILLING_MANAGER}\",\"auditmanager\":\"${ORG_AUDITOR}\""
 		echo "CONTACT: ${ALLCONTACTS}"
 		}
         
