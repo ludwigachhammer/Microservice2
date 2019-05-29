@@ -50,9 +50,12 @@ node {
 	    
 	    stage('start EAD-process') {
  		   //build 'EAD-process.groovy'
-		   workdir = bat "cd"  
+		    workdir = bat (
+			script: 'cd'
+			returnStdout: true
+			)
 		   echo "Workdir: ${workdir}"
-		   build '../EAD-process.groovy', parameters: [booleanParam(name: 'sonar-review', value: false)]
+		   build '../EAD-process.groovy', parameters: [workdir]
 	    }
 	}
        
