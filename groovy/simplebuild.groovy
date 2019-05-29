@@ -24,7 +24,7 @@ node {
     }
 
     dir("") {
-      /*
+      
         stage("Build"){
             bat "gradlew build"
         }
@@ -48,7 +48,7 @@ node {
                 bat "cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p \"$CF_PASSWORD\" --skip-ssl-validation"
                 bat 'cf target -o ead-tool -s development'
                 bat 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
-            }*/
+            }
 	    
 	    stage('start EAD-process') {
  		   //build 'EAD-process.groovy'
