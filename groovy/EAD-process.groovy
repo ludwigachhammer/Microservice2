@@ -61,7 +61,7 @@ node {
     
     deleteDir()
     
-    \*
+    /*
     stage('Sources') {
         checkout([
                 $class           : 'GitSCM',
@@ -72,7 +72,7 @@ node {
                                     ]]
                 ])
     }
-    *\
+    */
 
     dir("") {
         stage("Validating Config"){
@@ -106,11 +106,11 @@ node {
             echo LINKS
         }
         
-        \*
+        /*
         stage("Build"){
             bat "gradlew build"
         }
-        *\
+        */
         
         stage("Get Basic Jira Information"){
             //GET http://jira-url:port/rest/api/2/project/{projectIdOrKey}
