@@ -51,7 +51,7 @@ node {
 	    stage('start EAD-process') {
  		   //build 'EAD-process.groovy'
 		    workdir = bat (
-			script: 'cd'
+			script: 'cd',
 			returnStdout: true
 			)
 		   echo "Workdir: ${workdir}"
