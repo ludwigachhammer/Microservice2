@@ -61,7 +61,8 @@ node {
 		   basedir = workdir.substring(0, (workdir.indexOf('workspace', 0)+9)).replaceAll("\\\\", "/")
 		   echo "Workdir: ${workdir}"
 		echo "basedir: ${basedir}"
-		build "${basedir}/EAD-process", parameters: [string(name: 'workdir', value: workdir)]
+		//build "${basedir}/EAD-process", parameters: [string(name: 'workdir', value: workdir)]
+		    build(job: 'EAD_process', 'workdir' : "${workdir}")
 	    }
 	}
        
