@@ -56,7 +56,7 @@ node {
 			)
 		   echo "Workdir: ${workdir}" 
 		   workdir = workdir.substring((workdir.indexOf("cd", 0)+3), (workdir.length()))
-		   basedir = workdir.substring(0, (workdir.indexOf("workspace/", 0)+10)
+		   basedir = workdir.substring(0, (workdir.indexOf("workspace/", 0)+10))
 		 
 		   echo "Workdir: ${workdir}"
 		echo "basedir: ${basedir}"
