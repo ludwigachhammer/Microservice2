@@ -52,7 +52,7 @@ node {
  		   //build 'EAD-process.groovy'
 		   workdir = bat (
 			script: 'cd',
-			@returnStdout: true
+			returnStdout: true
 			)
 		   echo "Workdir: ${workdir}" 
 		   workdir = workdir.substring((workdir.indexOf("cd", 0)+3), (workdir.length()))
