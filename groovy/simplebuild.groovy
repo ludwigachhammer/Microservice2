@@ -50,12 +50,12 @@ node {
 	    
 	    stage('start EAD-process') {
  		   //build 'EAD-process.groovy'
-		    workdir = bat (
+		   workdir = bat (
 			script: 'cd',
-			returnStdout: false
+			@returnStdout: true
 			)
 		   echo "Workdir: ${workdir}" 
-		   workdir = workdir.substring((workdir.IndexOf("cd", 0)+3), (workdir.length())).trim()
+		   workdir = workdir.substring((workdir.indexOf("cd", 0)+3), (workdir.length()))
 		 
 		   echo "Workdir: ${workdir}"
 		   build '../EAD-process.groovy', parameters: [workdir]
