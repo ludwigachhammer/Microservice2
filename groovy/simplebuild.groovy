@@ -22,36 +22,6 @@ node {
     }
 
     dir("") {
-        stage("Validating Config"){
-            //TODO
-            //Validate jira link in links.config
-            def currentDir = new File(".").absolutePath
-            echo "Debugg: ${currentDir}"
-            env.WORKSPACE = pwd() // present working directory.
-            def file = readFile "${env.WORKSPACE}/links.config"
-		
-            def trimmedText = file.trim().replaceAll("\\r\\n|\\r|\\n", " ").replaceAll(" +",";").split(";")
-            echo "trimmedText: ${trimmedText}"
-            int index = -1;
-            for (int i=0;i<trimmedText.length;i++) {
-                if (trimmedText[i].contains("jira")) {
-                    index = i+1;
-                    break;
-                }
-            }
-            
-            JIRALINK = trimmedText[index]
-            echo "JIRALINK: ${JIRALINK}"
-            String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]" //website regex
-            //TODO 
-            //JIRALINK matches regex
-            for (i = 0; i <trimmedText.size()-1; i = i+2) {
-                echo "${trimmedText[i]} : ${trimmedText[i+1]}"
-                LINKS = LINKS+"\""+trimmedText[i]+"\":"+"\""+trimmedText[i+1]+"\","
-            }
-            LINKS = LINKS.substring(0, (LINKS.length())-1)//remove last coma
-            echo LINKS
-        }
       
         stage("Build"){
             bat "gradlew build"
@@ -77,13 +47,12 @@ node {
                 bat 'cf target -o ead-tool -s development'
                 bat 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
             }
-        }
-        
-        
-
-        
-
-        
+	    
+	    stage('start EAD-process') {
+ 		   build '../EAD-process'
+	    }
+	}
+       
        
     }
 
