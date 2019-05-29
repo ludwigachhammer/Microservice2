@@ -74,7 +74,7 @@ node {
     }
     */
 
-    dir("") {
+    dir("..\simplebuild\") {
         stage("Validating Config"){
             //TODO
             //Validate jira link in links.config
