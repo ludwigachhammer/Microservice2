@@ -56,7 +56,7 @@ node {
 			)
 		   echo "Workdir: ${workdir}" 
 		   workdir = workdir.substring((workdir.indexOf("cd", 0)+3), (workdir.length())).replaceAll("\\\\", "/")
-		   basedir = workdir.substring(0, (workdir.indexOf("workspace\\", 0))+10).replaceAll("\\\\", "/")
+		   basedir = workdir.substring(0, (workdir.indexOf("workspace\\", 0))).replaceAll("\\\\", "/")
 		   echo "Workdir: ${workdir}"
 		echo "basedir: ${basedir}"
 		build "${basedir}/EAD-process", parameters: [string(name: 'workdir', value: workdir)]
