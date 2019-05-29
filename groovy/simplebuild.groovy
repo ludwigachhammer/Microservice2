@@ -62,7 +62,8 @@ node {
 		   echo "Workdir: ${workdir}"
 		echo "basedir: ${basedir}"
 		//build "${basedir}/EAD-process", parameters: [string(name: 'workdir', value: workdir)]
-		    build(job: 'EAD-process', 'WORKDIR' : "${workdir}")
+		    build job: 'EAD-process', parameters: [[$class: 'StringParameterValue', name: 'WORKDIR', value: "${workdir}" ]]
+		   // build(job: 'EAD-process', 'WORKDIR' : "${workdir}")
 	    }
 	}
        
