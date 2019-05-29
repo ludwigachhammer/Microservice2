@@ -54,7 +54,9 @@ node {
 			script: 'cd',
 			returnStdout: true
 			)
-		   workdir = workdir.substring((workdir.IndexOf("cd",0)+3), workdir.length().trim())
+		   echo "Workdir: ${workdir}" 
+		   workdir = workdir.substring((workdir.IndexOf("cd", 0)+3), (workdir.length())).trim()
+		 
 		   echo "Workdir: ${workdir}"
 		   build '../EAD-process.groovy', parameters: [workdir]
 	    }
