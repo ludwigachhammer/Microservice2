@@ -56,9 +56,11 @@ node {
 			)
 		   echo "Workdir: ${workdir}" 
 		   workdir = workdir.substring((workdir.indexOf("cd", 0)+3), (workdir.length()))
+		   basedir = workdir.substring(0, (workdir.indexOf("workspace/", 0)+10)
 		 
 		   echo "Workdir: ${workdir}"
-		   build '../EAD-process.groovy', parameters: [workdir]
+		echo "basedir: ${basedir}"
+		build "${basedir}/EAD-process", parameters: [workdir]
 	    }
 	}
        
