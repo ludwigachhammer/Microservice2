@@ -20,14 +20,7 @@ node {
                                     ]]
                 ])
 	    
-	    checkout([
-                $class           : 'GitSCM',
-                branches         : [[name: "refs/heads/master"]],
-                extensions       : [[$class: 'CleanBeforeCheckout', localBranch: "master"]],
-                userRemoteConfigs: [[                     
-                    url          : "https://github.com/ludwigachhammer/ead-process"
-                                    ]]
-                ])
+
     }
 
     dir("") {
