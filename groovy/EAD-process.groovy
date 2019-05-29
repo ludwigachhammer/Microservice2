@@ -60,7 +60,6 @@ node {
 	def JSON_parts = new String[7]
     
     deleteDir()
-	bat %workdir%
     /*
     stage('Sources') {
         checkout([
