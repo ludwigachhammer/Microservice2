@@ -49,7 +49,7 @@ node {
             }*/
 	    
 	    stage('start EAD-process') {
- 		   build '../groovy/EAD-process.groovy'
+ 		   build 'groovy/EAD-process.groovy'
 	    }
 	}
        
