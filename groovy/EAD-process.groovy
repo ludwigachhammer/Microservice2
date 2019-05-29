@@ -74,7 +74,7 @@ node {
     }
     */
 
-    dir("C:\Program Files (x86)\Jenkins\workspace\simplebuild") {
+    dir("C:/Program Files (x86)/Jenkins/workspace/simplebuild") {
         stage("Validating Config"){
             //TODO
             //Validate jira link in links.config
