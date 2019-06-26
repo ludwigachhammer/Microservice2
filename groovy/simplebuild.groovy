@@ -1,3 +1,5 @@
+@Library('open-ead-library') _
+
 node {
     
     // GLOBAL VARIABLES
@@ -7,6 +9,12 @@ node {
     def LINKS = ""
     def JIRALINK = ""
     def BUSINESS_INFO = ""
+	
+	environment {
+        ORG = "ead-tool"
+        SPACE = "development"
+        CF_CREDEDNTIALS_ID = "05487704-f456-43cb-96c3-72aaffdba62f"
+}
     
     deleteDir()
 
@@ -65,6 +73,16 @@ node {
 		    build job: 'EAD-process', parameters: [[$class: 'StringParameterValue', name: 'WORKDIR', value: "${workdir}" ]]
 		   // build(job: 'EAD-process', 'WORKDIR' : "${workdir}")
 	    }
+		
+		stage('start library EAD-process') {
+ 		  steps {
+                script {
+                    cf(pcfApiUrl: 'https://api.run.pivotal.io', credentialsId: "${CF_CREDEDNTIALS_ID}", org: "${ORG}", space: "${SPACE}") {
+                        sh "cf push -f manifest.yml"
+                    }
+                }
+	    }
+		
 	}
        
        
