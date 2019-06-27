@@ -1,7 +1,9 @@
-@Library('open-ead-library')
+@Library('open-ead-library') _
+
+eadtest 'test'
 
 node {
-    eadtest 'test'
+    
     // GLOBAL VARIABLES
     def NAME = "mock-microservice2"
     def BASIC_INFO = ""
