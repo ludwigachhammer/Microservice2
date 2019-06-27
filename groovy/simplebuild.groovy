@@ -1,4 +1,4 @@
-@Library('open-ead-library') _
+@Library('open-ead-library')
 
 node {
     eadtest 'test'
