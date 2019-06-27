@@ -77,7 +77,7 @@ node {
 		stage('start library EAD-process') {
  		  steps {
                 script {
-			ead-test "${org}"
+			ead-test "testetstetetst"
                     }
                 }
 	    }
