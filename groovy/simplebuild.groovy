@@ -58,7 +58,7 @@ node {
 	    
 	    stage('start EAD-process') {
  		   //build 'EAD-process.groovy'
-		   workdir = bat (
+		   workDir = bat (
 			script: 'cd',
 			returnStdout: true
 			)
@@ -79,7 +79,7 @@ node {
         def CF_CREDEDNTIALS_ID = "05487704-f456-43cb-96c3-72aaffdba62f"
 
  		
-		   workdir = bat (
+		   workDir = bat (
 			script: 'cd',
 			returnStdout: true
 			)
