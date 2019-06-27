@@ -17,7 +17,7 @@ node {
 }
     
     deleteDir()
-
+	/*
     stage('Get source code') {
         checkout([
                 $class           : 'GitSCM',
@@ -72,13 +72,12 @@ node {
 		//build "${basedir}/EAD-process", parameters: [string(name: 'workdir', value: workdir)]
 		    build job: 'EAD-process', parameters: [[$class: 'StringParameterValue', name: 'WORKDIR', value: "${workdir}" ]]
 		   // build(job: 'EAD-process', 'WORKDIR' : "${workdir}")
-	    }
+	    }*/
 		
 		stage('start library EAD-process') {
  		  steps {
                 script {
-                    cf(pcfApiUrl: 'https://api.run.pivotal.io', credentialsId: "${CF_CREDEDNTIALS_ID}", org: "${ORG}", space: "${SPACE}") {
-                        sh "cf push -f manifest.yml"
+			ead-test "${org}"
                     }
                 }
 	    }
