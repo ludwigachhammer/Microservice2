@@ -1,10 +1,10 @@
 #!/usr/bin/env groovy
 @Library('open-ead-library') _
 
-gbuild 'clean compileJava'
+
 
 node {
-	
+	gbuild 'clean compileJava'
     // GLOBAL VARIABLES
     def NAME = "mock-microservice2"
     def BASIC_INFO = ""
