@@ -39,6 +39,7 @@ node {
     
     // GLOBAL VARIABLES
     def NAME = "mock-microservice2"
+	def ORG_NAME = "ead-tool"
     def BASIC_INFO = ""
     def BUILDPACKSTRING = ""
     def LINKS = ""
@@ -181,7 +182,9 @@ node {
             buildpacks = buildpacks.substring(0, (buildpacks.length())-1) //remove last coma
             BUILDPACKSTRING = buildpacks+"]"
             echo "buildpackstring: ${BUILDPACKSTRING}"
-            //TODO network policies
+            
+			
+			//TODO network policies
             CF_NETWORK_POLICIES_SOURCE = bat (
                 script: 'cf network-policies --source '+NAME,
                 returnStdout: true
@@ -197,6 +200,17 @@ node {
             APP_SERVICES = BUILDPACKSTRING + APP_SERVICES + "]}"
             echo "APP_SERVICES: ${APP_SERVICES}"            
         }//stage
+		
+		/*
+		stage("Get CF-Contact information") {
+			APP_CONTACT = bat (
+				script: 'cf org-users'+ORG_NAME,
+				returnStdout: true
+			)
+			echo "APP_CONTACT: ${APP_CONTACT}"
+			//CF_CONTACT1 = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG MANAGER", 0)+11), (CF_CONTACT.indexOf("BILLING MANAGER", 0)))
+			echo "APP_CONTACT1: ${APP_CONTACT}"
+		}*/
         
         stage("Push Documentation"){
             def runtime = " \"status\":\"${APP_SHORTSTATUS[1]}\", \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
