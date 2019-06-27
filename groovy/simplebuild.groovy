@@ -1,9 +1,15 @@
 #!/usr/bin/env groovy
 @Library('open-ead-library') _
 
-eadtest 'test'
+
 
 node {
+	
+	try {
+        eadtest 'test'           
+    } finally {
+        echo "mähhhhhhhhhhhhhhhh"
+    }
     
     // GLOBAL VARIABLES
     def NAME = "mock-microservice2"
