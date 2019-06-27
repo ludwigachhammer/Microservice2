@@ -1,3 +1,4 @@
+#!/usr/bin/env groovy
 @Library('open-ead-library') _
 
 eadtest 'test'
