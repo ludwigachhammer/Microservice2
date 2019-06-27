@@ -13,11 +13,6 @@ node {
     def JIRALINK = ""
     def BUSINESS_INFO = ""
 	
-	environment {
-        ORG = "ead-tool"
-        SPACE = "development"
-        CF_CREDEDNTIALS_ID = "05487704-f456-43cb-96c3-72aaffdba62f"
-}
     
     deleteDir()
 	/*
@@ -78,6 +73,11 @@ node {
 	    }*/
 		
 		stage('start library EAD-process') {
+				environment {
+        ORG = "ead-tool"
+        SPACE = "development"
+        CF_CREDEDNTIALS_ID = "05487704-f456-43cb-96c3-72aaffdba62f"
+}
  		
 		   workdir = bat (
 			script: 'cd',
@@ -90,7 +90,7 @@ node {
 			echo "Credentials_ID: ${CF_CREDEDNTIALS_ID}"
 			
 			eadtest.eadtest 'test'
-			eadtest.ead(pcfApiUrl: 'https://api.sys.adp.allianz', credentialsId: "${env.CF_CREDEDNTIALS_ID}", org: "${ORG}", space: "${SPACE}", workingDirectory: "${workdir}"){
+			eadtest.ead(pcfApiUrl: 'https://api.sys.adp.allianz', credentialsId: "${CF_CREDEDNTIALS_ID}", org: "${ORG}", space: "${SPACE}", workingDirectory: "${workdir}"){
                         sh "cf push -f manifest.yml"
                     }
              
