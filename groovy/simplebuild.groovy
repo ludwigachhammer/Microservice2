@@ -5,11 +5,9 @@
 
 node {
 	
-	try {
-        eadtest 'test'           
-    } finally {
-        echo "mähhhhhhhhhhhhhhhh"
-    }
+	
+     eadtest 'test'           
+  
     
     // GLOBAL VARIABLES
     def NAME = "mock-microservice2"
