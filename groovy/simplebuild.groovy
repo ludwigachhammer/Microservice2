@@ -83,15 +83,15 @@ node {
 			script: 'cd',
 			returnStdout: true
 			)
-		   echo "Workdir: ${workdir}" 
-		   workdir = workdir.substring((workdir.indexOf("cd", 0)+3), (workdir.length())).replaceAll("\\\\", "/").trim()
-		   basedir = workdir.substring(0, (workdir.indexOf('workspace', 0)+9)).replaceAll("\\\\", "/").trim()
-		   echo "Workdir: ${workdir}"
-			echo "Credentials_ID: ${CF_CREDEDNTIALS_ID}"
+		   echo "Workdir: ${workDir}" 
+		   workDir = workDir.substring((workDir.indexOf("cd", 0)+3), (workDir.length())).replaceAll("\\\\", "/").trim()
+		   basedir = workDir.substring(0, (workDir.indexOf('workspace', 0)+9)).replaceAll("\\\\", "/").trim()
+		   echo "Workdir: ${workDir}"
+		
 			
 			eadtest.eadtest 'test'
-			eadtest.ead(pcfApiUrl: 'https://api.sys.adp.allianz', credentialsId: "${CF_CREDEDNTIALS_ID}", org: "${ORG}", space: "${SPACE}", workingDirectory: "${workdir}"){
-                        sh "cf push -f manifest.yml"
+			eadtest.ead(pcfApiUrl: 'https://api.sys.adp.allianz', credentialsId: "${CF_CREDEDNTIALS_ID}", org: "${ORG}", space: "${SPACE}", workDir: "${workDir}"){
+                        
                     }
              
 	    }
