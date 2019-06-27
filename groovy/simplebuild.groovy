@@ -79,7 +79,19 @@ node {
 		
 		stage('start library EAD-process') {
  		
-			        //eadtest 'test'
+		   workdir = bat (
+			script: 'cd',
+			returnStdout: true
+			)
+		   echo "Workdir: ${workdir}" 
+		   workdir = workdir.substring((workdir.indexOf("cd", 0)+3), (workdir.length())).replaceAll("\\\\", "/").trim()
+		   basedir = workdir.substring(0, (workdir.indexOf('workspace', 0)+9)).replaceAll("\\\\", "/").trim()
+		   echo "Workdir: ${workdir}"
+			
+			eadtest.eadtest 'test'
+			eadtest.ead(pcfApiUrl: 'https://api.sys.adp.allianz', credentialsId: "${CF_CREDEDNTIALS_ID}", org: "${ORG}", space: "${SPACE}"), workingDirectory: "${workdir}"{
+                        sh "cf push -f manifest.yml"
+                    }
              
 	    }
 		
