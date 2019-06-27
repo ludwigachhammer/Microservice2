@@ -1,16 +1,12 @@
 #!/usr/bin/env groovy
 @Library('open-ead-library') _
-def utils = new com.X.Utils(script:this)
 
-
-def checkUtils() {
-    utils.eadtest() 
-}
 
 node {
 	
-	
-     utils.eadtest()       
+	script {
+     utils.eadtest()    
+	}
   
     
     // GLOBAL VARIABLES
