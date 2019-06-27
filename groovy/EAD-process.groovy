@@ -49,7 +49,6 @@ node {
     
     // GLOBAL VARIABLES
     def NAME = "mock-microservice2"
-	def ORG_NAME = "ead-tool"
     def BASIC_INFO = ""
     def BUILDPACKSTRING = ""
     def LINKS = ""
@@ -61,7 +60,7 @@ node {
 	def JSON_parts = new String[7]
     
     deleteDir()
-
+    /*
     stage('Sources') {
         checkout([
                 $class           : 'GitSCM',
@@ -72,8 +71,9 @@ node {
                                     ]]
                 ])
     }
+    */
 
-    dir("") {
+    dir("C:/Program Files (x86)/Jenkins/workspace/simplebuild") {
         stage("Validating Config"){
             //TODO
             //Validate jira link in links.config
@@ -104,9 +104,12 @@ node {
             LINKS = LINKS.substring(0, (LINKS.length())-1)//remove last coma
             echo LINKS
         }
+        
+        /*
         stage("Build"){
             bat "gradlew build"
         }
+        */
         
         stage("Get Basic Jira Information"){
             //GET http://jira-url:port/rest/api/2/project/{projectIdOrKey}
@@ -147,6 +150,7 @@ node {
             BUSINESS_INFO = " \"domain\": \"drumset\", \"subdomain\": \"cymbals\", \"product\": \"crashride\" " 
         }
         
+        /*
         stage('Deploy') {
             def branch = ['master']
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
@@ -167,6 +171,7 @@ node {
                 bat 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
             }
         }
+        */
         
         
         stage("Get Runtime Information"){
@@ -197,9 +202,7 @@ node {
             buildpacks = buildpacks.substring(0, (buildpacks.length())-1) //remove last coma
             BUILDPACKSTRING = buildpacks+"]"
             echo "buildpackstring: ${BUILDPACKSTRING}"
-            
-			
-			//TODO network policies
+            //TODO network policies
             CF_NETWORK_POLICIES_SOURCE = bat (
                 script: 'cf network-policies --source '+NAME,
                 returnStdout: true
@@ -215,17 +218,6 @@ node {
             APP_SERVICES = BUILDPACKSTRING + APP_SERVICES + "]}"
             echo "APP_SERVICES: ${APP_SERVICES}"            
         }//stage
-		
-		/*
-		stage("Get CF-Contact information") {
-			APP_CONTACT = bat (
-				script: 'cf org-users'+ORG_NAME,
-				returnStdout: true
-			)
-			echo "APP_CONTACT: ${APP_CONTACT}"
-			//CF_CONTACT1 = CF_CONTACT.substring((CF_CONTACT.indexOf("ORG MANAGER", 0)+11), (CF_CONTACT.indexOf("BILLING MANAGER", 0)))
-			echo "APP_CONTACT1: ${APP_CONTACT}"
-		}*/
         
         stage("Get CF-Contact information") {
 		CF_CONTACT = bat (
