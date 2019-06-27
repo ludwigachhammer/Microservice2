@@ -75,11 +75,9 @@ node {
 	    }*/
 		
 		stage('start library EAD-process') {
- 		  steps {
-                script {
+ 		
 			        eadtest 'test'
-                    }
-                }
+             
 	    }
 		
 	}
