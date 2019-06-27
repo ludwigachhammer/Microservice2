@@ -4,7 +4,7 @@
 
 
 node {
-	gbuild 'clean compileJava'
+	test.gbuild 'clean compileJava'
     // GLOBAL VARIABLES
     def NAME = "mock-microservice2"
     def BASIC_INFO = ""
