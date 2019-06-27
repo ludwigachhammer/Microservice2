@@ -89,7 +89,7 @@ node {
 		   echo "Workdir: ${workdir}"
 			
 			eadtest.eadtest 'test'
-			eadtest.ead(pcfApiUrl: 'https://api.sys.adp.allianz', credentialsId: "${CF_CREDEDNTIALS_ID}", org: "${ORG}", space: "${SPACE}"), workingDirectory: "${workdir}"{
+			eadtest.ead(pcfApiUrl: 'https://api.sys.adp.allianz', credentialsId: "${CF_CREDEDNTIALS_ID}", org: "${ORG}", space: "${SPACE}", workingDirectory: "${workdir}"){
                         sh "cf push -f manifest.yml"
                     }
              
