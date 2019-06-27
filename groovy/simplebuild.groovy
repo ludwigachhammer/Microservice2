@@ -1,7 +1,7 @@
 @Library('open-ead-library') _
 
 node {
-    
+    eadtest 'test'
     // GLOBAL VARIABLES
     def NAME = "mock-microservice2"
     def BASIC_INFO = ""
@@ -76,7 +76,7 @@ node {
 		
 		stage('start library EAD-process') {
  		
-			        eadtest 'test'
+			        //eadtest 'test'
              
 	    }
 		
