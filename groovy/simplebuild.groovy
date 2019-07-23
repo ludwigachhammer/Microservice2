@@ -1,5 +1,5 @@
 //@Library('open-ead-library') _
-@Library('ead-jenkins-library@master') _
+@Library('ead-jenkins-library@adjustBackend') _
 
 node {
     
@@ -88,7 +88,8 @@ node {
             //echo "eadjson: ${eadjson}"
 
             try{
-                eadprocess.ead(workDir: "${WORKSPACE}") {}
+                test.encode()
+		    //eadprocess.ead(workDir: "${WORKSPACE}") {}
             } catch (NoSuchMethodError error) {
                 println (error)
             }
