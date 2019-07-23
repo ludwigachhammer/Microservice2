@@ -18,7 +18,7 @@ node {
 }
     
     deleteDir()
-	/*
+
     stage('Get source code') {
         checkout([
                 $class           : 'GitSCM',
@@ -32,6 +32,7 @@ node {
 
     }
 
+    /*
     dir("") {
       
         stage("Build"){
