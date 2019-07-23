@@ -76,8 +76,6 @@ node {
 	    }*/
 
 
-    steps {
-        script {
             def file = readFile "${WORKSPACE}/links.config"
             //def manifest = readFile "${WORKSPACE}/manifest.yml"
 
@@ -93,8 +91,7 @@ node {
             } catch (NoSuchMethodError error) {
                 println (error)
             }
-        }
-    }
+
 
     /*
 		stage('start library EAD-process') {
