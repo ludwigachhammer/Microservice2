@@ -1,5 +1,5 @@
 //@Library('open-ead-library') _
-@Library('ead-jenkins-library@extractReadme') _
+@Library('ead-jenkins-library@master') _
 
 node {
     
