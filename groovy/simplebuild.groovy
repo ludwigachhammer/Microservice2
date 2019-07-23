@@ -76,7 +76,7 @@ node {
 	    }*/
 
 
-            def file = readFile "${WORKSPACE}/links.config"
+            //def file = readFile "${WORKSPACE}/links.config"
             //def manifest = readFile "${WORKSPACE}/manifest.yml"
 
             //TODO should be extracted either from manifest or from pom.xml
