@@ -1,4 +1,5 @@
-@Library('open-ead-library') _
+//@Library('open-ead-library') _
+@Library('ead-jenkins-libary@extractReadme') _
 
 node {
     
@@ -73,7 +74,29 @@ node {
 		    build job: 'EAD-process', parameters: [[$class: 'StringParameterValue', name: 'WORKDIR', value: "${workdir}" ]]
 		   // build(job: 'EAD-process', 'WORKDIR' : "${workdir}")
 	    }*/
-		
+
+
+    steps {
+        script {
+            def file = readFile "${WORKSPACE}/links.config"
+            //def manifest = readFile "${WORKSPACE}/manifest.yml"
+
+            //TODO should be extracted either from manifest or from pom.xml
+            //def manifest = readManifest file: 'target/mockmicroservice-0.1.0.jar'
+            //echo "manifest: ${manifest}"
+
+            //def eadjson = readJSON file: 'ead.json'
+            //echo "eadjson: ${eadjson}"
+
+            try{
+                eadprocess.ead(workDir: "${WORKSPACE}") {}
+            } catch (NoSuchMethodError error) {
+                println (error)
+            }
+        }
+    }
+
+    /*
 		stage('start library EAD-process') {
  		  steps {
                 script {
@@ -81,6 +104,8 @@ node {
                     }
                 }
 	    }
+	    */
+
 		
 	}
        
