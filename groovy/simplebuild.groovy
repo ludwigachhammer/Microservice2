@@ -88,7 +88,8 @@ node {
             //echo "eadjson: ${eadjson}"
 
             try{
-                test.encode()
+                eadprocess.check 'ludwig'
+		    //test.encode()
 		    //eadprocess.ead(workDir: "${WORKSPACE}") {}
             } catch (NoSuchMethodError error) {
                 println (error)
