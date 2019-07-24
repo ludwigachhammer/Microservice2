@@ -1,5 +1,5 @@
 //@Library('open-ead-library') _
-@Library('ead-jenkins-library@adjustBackend') _
+@Library('ead-jenkins-library@restructureLibrary') _
 
 node {
     
