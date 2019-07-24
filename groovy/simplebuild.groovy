@@ -15,6 +15,7 @@ node {
         ORG = "ead-tool"
         SPACE = "development"
         CF_CREDEDNTIALS_ID = "05487704-f456-43cb-96c3-72aaffdba62f"
+	GITHUB_CREDENTIALS = "GITHUB"
 }
     
     deleteDir()
@@ -84,14 +85,11 @@ node {
             //def manifest = readManifest file: 'target/mockmicroservice-0.1.0.jar'
             //echo "manifest: ${manifest}"
 
-            def eadjson = readJSON file: 'ead.json'
-            echo "eadjson: ${eadjson}"
-	
-		def readme = readFile file: "${WORKSPACE}/readme.md"
-            echo "readme: ${readme}"
+
 
             try{
-                eadprocess.check 'ludwig'
+                test.getLanguages 'GITHUB'
+		    //eadprocess.check 'ludwig'
 		    //test.encode()
 		    //eadprocess.ead(workDir: "${WORKSPACE}") {}
             } catch (NoSuchMethodError error) {
