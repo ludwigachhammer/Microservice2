@@ -81,11 +81,14 @@ node {
             //def manifest = readFile "${WORKSPACE}/manifest.yml"
 
             //TODO should be extracted either from manifest or from pom.xml
-            def manifest = readManifest file: 'target/mockmicroservice-0.1.0.jar'
-            echo "manifest: ${manifest}"
+            //def manifest = readManifest file: 'target/mockmicroservice-0.1.0.jar'
+            //echo "manifest: ${manifest}"
 
-            //def eadjson = readJSON file: 'ead.json'
-            //echo "eadjson: ${eadjson}"
+            def eadjson = readJSON file: 'ead.json'
+            echo "eadjson: ${eadjson}"
+	
+		def readme = readFile file: "${WORKSPACE}/readme.md"
+            echo "readme: ${readme}"
 
             try{
                 eadprocess.check 'ludwig'
