@@ -88,7 +88,8 @@ node {
 
 
             try{
-                test.getLanguages 'GITHUB'
+                test.extractReadme()
+		    //test.getLanguages 'GITHUB'
 		    //eadprocess.check 'ludwig'
 		    //test.encode()
 		    //eadprocess.ead(workDir: "${WORKSPACE}") {}
