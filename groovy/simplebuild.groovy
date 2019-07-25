@@ -1,5 +1,5 @@
 //@Library('open-ead-library') _
-@Library('ead-jenkins-library@restructureLibrary') _
+@Library('ead-jenkins-library@master') _
 
 node {
     
@@ -16,6 +16,7 @@ node {
         SPACE = "development"
         CF_CREDEDNTIALS_ID = "05487704-f456-43cb-96c3-72aaffdba62f"
 	GITHUB_CREDENTIALS = "GITHUB"
+		JENKINS_CRED = "JENKINS_CRED"
 }
     
     deleteDir()
@@ -88,7 +89,8 @@ node {
 
 
             try{
-                test.extractReadme()
+                test.getJenkins(JENKINS_CRED)
+		    //test.extractReadme()
 		    //test.getLanguages 'GITHUB'
 		    //eadprocess.check 'ludwig'
 		    //test.encode()
