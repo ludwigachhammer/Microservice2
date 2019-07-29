@@ -89,7 +89,7 @@ node {
 
 
             try{
-                test.getJenkins()
+                test.createCrawlerJob()
 		    //test.extractReadme()
 		    //test.getLanguages 'GITHUB'
 		    //eadprocess.check 'ludwig'
